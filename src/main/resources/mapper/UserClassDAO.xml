@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.stusystem.lky.dao.UserClassDAO">
+<!-- 为dao接口方法配置sql语句 -->
+
+	<insert id="isnertuserClassState"  parameterType="int">
+		<!-- sql语句 -->
+		insert into user_class (class_id,user_id) values(#{classId},#{userId})
+	</insert>
+	<select id="getUserlearnedClass" parameterType="int">
+	    SELECT
+	     class_id
+	    FROM
+	     user_class
+	    WHERE
+	     user_id=#{userId}
+	</select>
+	
+</mapper>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.stusystem.lky.dao.QuestionInfoDAO">
+<!-- 为dao接口方法配置sql语句 -->
+
+	<select id="queryByChapterId" resultType="QuestionInfo" parameterType="int">
+		<!-- sql语句 -->
+		SELECT 
+		 question_id,
+    	 content,
+    	 chapter_id,
+    	 option1,
+    	 option2,
+    	 option3,
+    	 option4,
+    	 answer_id,
+    	 answer_content
+		FROM 
+		 question
+		WHERE
+		 chapter_id=#{chapterId};
+	</select>
+	
+</mapper>
