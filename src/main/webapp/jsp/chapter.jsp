@@ -26,29 +26,7 @@ pageEncoding="UTF-8" %>
          	for(var i=0,len=nameArr.length;i<len;i++){
          		popContent=popContent+'<div class="card"><div class="card-header border border-top-0 border-right-0 border-left-0">'+nameArr[i]+'</div><div class="card-body">'+contentArr[i].substring(0, 50)+'<button class="btn btn-link" onclick="detailFunction('+i+')">……开始学习</button></div></div>';
          	}
-         	document.getElementById('show').innerHTML=popContent;
-         	var classId=sessionStorage.getItem('classId');
-         	var userName=sessionStorage.getItem('userName');
-         	if(classId!=null){
-         		var json={};
-         		json.classId=classId;
-         		json.userName=userName;
-         		$.ajax({
-       			 type:'POST',
-       			 data:JSON.stringify(json),
-       			 contentType:'application/json',
-       			 dataType:'json',
-       			 url:'../userClassState',
-       			 success:function(data){
-       				 alert("保存成功");
-       				 sessionStorage.removeItem('classId');
-       			 },
-       			 error:function(e){
-       				 alert("发送失败");
-       			 }
-       		 });
-         	}
-         	
+         	document.getElementById('show').innerHTML=popContent;	
     	});	
     	function detailFunction(parameter){
 			var nameArr=${className};

@@ -18,6 +18,8 @@
     <link href="css/index/font-awesome.min.css?v=4.4.0" rel="stylesheet">
     <link href="css/index/animate.css" rel="stylesheet">
     <link href="css/index/style.css?v=4.1.0" rel="stylesheet">
+    <link rel="stylesheet" href="vendor/simple-line-icons/css/simple-line-icons.css">
+    <link rel="stylesheet" href="vendor/font-awesome/css/fontawesome-all.min.css">
    
 </head>
 
@@ -58,9 +60,9 @@
                     <span class="ng-scope">&nbsp;</span>
                 </li>
                 <li>
-
+					<a href="${pageContext.request.contextPath}/jsp/start.jsp"><i class="fas fa-university"></i> <span class="nav-label">首页</span></a>
                 <li>
-                    <a href="#"><i class="fa fa-folder"></i><span class="nav-label">课程</span><span class="fa arrow"></span></a>
+                    <a href="#"><i class="fas fa-book"></i><span class="nav-label"> 课程</span><span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li><a class="J_menuItem" href="${pageContext.request.contextPath}/getclass?chapterId=1">第一章</a></li>
                         <li><a class="J_menuItem" href="${pageContext.request.contextPath}/getclass?chapterId=2">第二章</a></li>
@@ -69,24 +71,23 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-folder"></i><span class="nav-label">练习</span><span class="fa arrow"></span></a>
+                    <a href="#"><i class="fas fa-pencil-alt"></i><span class="nav-label">练习</span><span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
-                        <li><a class="J_menuItem" href="${pageContext.request.contextPath}/getExam">智能组卷</a></li>
+                        <li><a class="J_menuItem" id="getexam">智能组卷</a></li>
+                        <li><a class="J_menuItem" id="history">做题历史</a></li>
+                        <li><a class="J_menuItem" href="${pageContext.request.contextPath}/jsp/chapterExam.jsp">章节练习</a></li>
                     </ul>
                 </li>
 
                 <li>
-                    <a href="#"><i class="fa fa-folder"></i> <span class="nav-label">笔记</span><span class="fa arrow"></span></a>
+                    <a href="#"><i class="fas fa-clipboard"></i> <span class="nav-label">笔记</span><span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li><a class="J_menuItem" href="${pageContext.request.contextPath}/jsp/writeNote.jsp">记笔记</a></li>
                         <li><a class="J_menuItem" id="shownote">查看笔记</a></li>
                     </ul>
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-folder"></i> <span class="nav-label">作品审核</span><span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">
-                        <li><a class="J_menuItem" href="${pageContext.request.contextPath}/proExa/toExa">学生作品审核</a></li>
-                    </ul>
+                    <a class="J_menuItem" href="${pageContext.request.contextPath}/getProblem"><i class="fas fa-comments"></i> <span class="nav-label">在线交流</span></a>
                 </li>
             </ul>
         </div>
@@ -121,6 +122,10 @@
     $(function(){
     	var value="${pageContext.request.contextPath}/show?userName="+sessionStorage.getItem("userName");
     	$("#shownote").attr("href",value);
+    	var value="${pageContext.request.contextPath}/getExam?userName="+sessionStorage.getItem("userName");
+    	$("#getexam").attr("href",value);
+    	var value="${pageContext.request.contextPath}/getExamHistory?userName="+sessionStorage.getItem("userName");
+    	$("#history").attr("href",value);
     });
 </script>
 </body>

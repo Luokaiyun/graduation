@@ -6,5 +6,5 @@ public interface UserService {
 	
 	UserLoginExceution userLogin(String userName,String userPassword);
 	
-	
+	int insertUser(String userName,String password);
 }

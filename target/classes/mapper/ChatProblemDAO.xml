@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.stusystem.lky.dao.ChatProblemDAO">
+	<select id="allProblem" resultType="ChatProblem">
+		select * from chatproblem;
+	</select>
+	<select id="problem" resultType="ChatProblem" parameterType="int">
+		select
+		*
+		from
+		chatproblem
+		where
+		problem_id=#{problemId};
+	</select>
+	<insert id="insertProblem">
+	insert into chatproblem (problem_content,problem_author) values(#{problemContent},#{author});
+	</insert>
+</mapper>

@@ -17,6 +17,7 @@ pageEncoding="UTF-8" %>
     	<script src="https://cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     	<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/bootstrap-table.min.js"></script>
     	<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/locale/bootstrap-table-zh-CN.min.js"></script>
+    	<script src="js/biang.min.js"></script>
     	<script type="text/javascript" charset="UTF-8">
     	$(function(){
     		var json=${examInfo};
@@ -26,20 +27,53 @@ pageEncoding="UTF-8" %>
     			+'" value="2">'+json[i].optionB+'</br><input type="radio" name="'+json[i].quesId+'" value="3">'+json[i].optionC+'</br><input type="radio" name="'+json[i].quesId+'" value="4">'+json[i].optionD+
     			'</br></form></div>';
     		}
+    		popContent=popContent+'<div style="margin:0 auto;width:200px;"><button class="btn btn-outline-primary" onclick="sumbitAnsFunction()">提交</button></div>'
     		document.getElementById('show').innerHTML=popContent;
     		//nameArr.push();
     	});	
     	function sumbitAnsFunction(){
-
+    		var ansdata=[];
+    		var json=${examInfo};
+    		for(var i=0;i<json.length;i++){
+    			var id=i+1;
+    			var j={};
+    			var input='input[name="'+id+'"]:checked';
+    			j.ans=$(input).val();
+    			j.quesId=id;
+    			ansdata.push(j);
+    		}
+   			 $.ajax({
+   			 type:'POST',
+   			 data:JSON.stringify(ansdata),
+   			 contentType:'application/json',
+   			 dataType:'json',
+   			 url:'${pageContext.request.contextPath}/checkAns',
+   			 success:function(data){
+   				var info='您的分数是：'+data;
+   				biang.confirm(info, function(yes){
+   			        if(yes){
+   			        	var url='${pageContext.request.contextPath}/ansAnalysis';
+   			        	location.href=url;
+   			        }else{
+   			            
+   			        }
+   			    }).show();
+   				//alert("发送成功");
+   				 
+   			 },
+   			 error:function(e){
+   				 alert("发送失败");
+   			 }
+   		 });
 		}
     	</script>
 </head>
 <body>
-<div class="panel-body" style="padding-bottom:0px;" id="show">
-     
-     <div style="margin:0 auto;width:200px;">
-     	<button class="btn btn-outline-primary" onclick="sumbitAnsFunction()">提交</button>
-     </div>
+<div class="panel-body" style="padding-bottom:0px;" >
+	<div style="padding-bottom:50px;padding-left:200px;padding-top:30px" id="show">
+	
+	</div>
+    
 </div>
 </body>
 </html>

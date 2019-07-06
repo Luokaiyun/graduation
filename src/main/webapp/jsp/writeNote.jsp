@@ -26,14 +26,13 @@ pageEncoding="UTF-8" %>
     		 j.noteAuthor=sessionStorage.getItem("userName");
     		 //json.push(j);
     		 var data=JSON.stringify(j);
-    		 alert(data);
     		 
     		 $.ajax({
     			 type:'POST',
     			 data:data,
     			 contentType:'application/json',
     			 dataType:'json',
-    			 url:'../save',
+    			 url:'${pageContext.request.contextPath}/save',
     			 success:function(data){
     				 alert("保存成功");
     				 

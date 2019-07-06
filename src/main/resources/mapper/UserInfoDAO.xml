@@ -16,7 +16,7 @@
 		 user_name=#{userName};
 	</select>
 	
-	<select id="insertUser" resultType="int" parameterType="String">
-		INSERT INTO userinfo (user_name,user_password) VALUES(#{userName},#{userPassword});
-	</select>
+	<insert id="insertUser"  >
+		INSERT IGNORE INTO userinfo (user_name,user_password) VALUES(#{userName},#{userPassword});
+	</insert>
 </mapper>

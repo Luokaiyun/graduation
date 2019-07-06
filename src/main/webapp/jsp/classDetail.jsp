@@ -21,9 +21,28 @@ pageEncoding="UTF-8" %>
     	$(function(){
     		var className=sessionStorage.getItem("name");
     		var classContent=sessionStorage.getItem("content");
+    		var classId=sessionStorage.getItem('classId');
+    		var userName=sessionStorage.getItem('userName');
          	var popContent='';
          	popContent=popContent+'<div class="card"><div class="card-header border border-top-0 border-right-0 border-left-0">'+className+'</div><div class="card-body">'+classContent+'</div></div>';
          	document.getElementById('show').innerHTML=popContent;
+         	var json={};
+     		json.classId=classId;
+     		json.userName=userName;
+     		$.ajax({
+   			 type:'POST',
+   			 data:JSON.stringify(json),
+   			 contentType:'application/json',
+   			 dataType:'json',
+   			 url:'${pageContext.request.contextPath}/userClassState',
+   			 success:function(data){
+   				 
+   				 sessionStorage.removeItem('classId');
+   			 },
+   			 error:function(e){
+   				 
+   			 }
+   		 	});
     	});	
     	</script>
 </head>

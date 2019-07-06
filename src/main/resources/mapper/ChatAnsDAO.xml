@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.stusystem.lky.dao.ChatAnsDAO">
+<!-- 为dao接口方法配置sql语句 -->
+<select id="allAns" resultType="ChatAns" parameterType="int">
+		<!-- sql语句 -->
+		SELECT 
+		*
+		FROM 
+		problem_ans
+		WHERE
+		 problem_id=#{problemId};
+	</select>
+	<insert id="insertAns">
+		insert into problem_ans(problem_id,problem_ans,ans_author) values(#{problemId},#{ans},#{author});
+	</insert>
+</mapper>

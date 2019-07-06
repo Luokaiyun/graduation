@@ -58,4 +58,8 @@ public class UserServiceImpl implements UserService {
 		}
 	}
 	
+	public int insertUser(String userName,String password){
+		return userInfoDao.insertUser(userName, password);
+	}
+	
 }

@@ -10,11 +10,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.stusystem.lky.dao.ClassInfoDAO;
+import com.stusystem.lky.dao.ExamDAO;
 import com.stusystem.lky.dao.QuestionInfoDAO;
 import com.stusystem.lky.dao.UserClassDAO;
 import com.stusystem.lky.dao.UserInfoDAO;
 import com.stusystem.lky.entity.ClassInfo;
+import com.stusystem.lky.entity.Exam;
 import com.stusystem.lky.entity.QuestionInfo;
+import com.stusystem.lky.entity.UserClass;
 
 @Service
 public class ExamServiceImpl implements ExamService{
@@ -31,6 +34,9 @@ public class ExamServiceImpl implements ExamService{
 	@Autowired
 	private ClassInfoDAO classinfoDAO;
 	
+	@Autowired
+	private ExamDAO examDAO;
+	
 	@Override
 	public List<QuestionInfo> queryByChapterId(int chapterId) {
 		// TODO Auto-generated method stub
@@ -39,7 +45,12 @@ public class ExamServiceImpl implements ExamService{
 	
 	public List<Integer> getUserlearnedClass(String userName){
 		 int userId=userInfoDAO.queryByName(userName).getUserId();
-		 return userclassDAO.getUserlearnedClass(userId);
+		 List<Integer> list=new ArrayList<Integer>();
+		 List<UserClass> userclasslist=userclassDAO.getUserlearnedClass(userId);
+		 for(int i=0;i<userclasslist.size();i++){
+			 list.add(userclasslist.get(i).getKnowId());
+		 }
+		 return list;
 	}
 	
 	public List<Integer> UserhandlePer(List<Integer> knowId){
@@ -76,6 +87,15 @@ public class ExamServiceImpl implements ExamService{
 			handle.add(cArr[c]);
 		}
 		return handle;
+	}
+	
+	public List<Exam> getExamHitstory(String userName){
+		List<Exam> examlist=examDAO.allExam(userName);
+		return examlist;
+	}
+	
+	public int saveExam(Exam exam){
+		return examDAO.insertExam(exam.getExamName(), exam.getTypeId(), exam.getUserName(), exam.getScore());
 	}
 
 }

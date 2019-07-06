@@ -36,12 +36,13 @@
 
                     <div class="card-footer">
                         <div class="row">
-                            <div class="col-6">
+                            <div class="col-6">  
                                 <button type="submit" class="btn btn-primary px-5">登录</button>
+                            	<a href="#" class="btn btn-link">忘记密码</a>
                             </div>
                             
                             <div class="col-6">
-                                <a href="#" class="btn btn-link">忘记密码？</a>
+                                <a href="${pageContext.request.contextPath}/jsp/register.jsp" class="btn btn-primary px-5">注册</a>
                             </div>
                         </div>
                     </div>
@@ -75,14 +76,14 @@
            return(false);
     }
     function login() {
-    	var userName = document.getElementsByName("userName").toString;
+    	var userName = document.getElementsByName("userName");
     	// console.info(userName)
-    	var userPass = document.getElementsByName("userPassword").toString;
+    	var userPass = document.getElementsByName("userPassword");
     	// console.info(userPass);
-    	if (userName == "" || userName == null) {
+    	if (userName[0].value==""||userName[0].value==null) {
     		alert("用户名不能为空");
     		return false;
-    	} else if (userPass == "" || userPass == null) {
+    	} else if (userPass[0].value==""||userPass[0].value==null) {
     		alert("密码不能为空");
     		return false;
     	} else {

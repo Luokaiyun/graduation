@@ -56,4 +56,23 @@ public class UserLoginController {
 		return mv;
 	}
 	
+	@RequestMapping(value="/register")
+	@ResponseBody
+	public ModelAndView register(@RequestParam ("userName")String userName, @RequestParam("userPassword") String userPassword){
+		ModelAndView mv=new ModelAndView();
+		int result=userService.insertUser(userName, userPassword);
+		if(result==0){
+			String mes="UserAlreadyExits";
+			mv.addObject("message",mes);
+			mv.setViewName("redirect:/jsp/register.jsp");
+		}
+		else{
+			userService.insertUser(userName, userPassword);
+			mv.addObject("userName",userName);
+			mv.setViewName("forward:/index");
+		}
+		return mv;
+		
+	}
+	
 }

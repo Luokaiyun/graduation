@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.stusystem.lky.dao.ExamQuestionDAO">
+<!-- 为dao接口方法配置sql语句 -->
+
+	<insert id="insertExamQuestion" >
+		insert into exam_question (question_id,exam_id) values(#{questionId},#{examId})
+	</insert>
+	
+	<select id="queryByExamId" resultType="QuestionInfo">
+		select q.*
+		from question q
+		join 
+			(select * from exam_question where exam_id=#{examId}) e
+		on q.question_id=e.question_id;
+	</select>
+	
+</mapper>

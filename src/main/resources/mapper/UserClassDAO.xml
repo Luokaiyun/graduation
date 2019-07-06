@@ -7,11 +7,11 @@
 
 	<insert id="isnertuserClassState"  parameterType="int">
 		<!-- sql语句 -->
-		insert into user_class (class_id,user_id) values(#{classId},#{userId})
+		insert ignore into user_class (know_id,user_id) values(#{knowId},#{userId})
 	</insert>
-	<select id="getUserlearnedClass" parameterType="int">
+	<select id="getUserlearnedClass" resultType="UserClass" parameterType="int">
 	    SELECT
-	     class_id
+	     *
 	    FROM
 	     user_class
 	    WHERE
